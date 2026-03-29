@@ -1,25 +1,4 @@
-
 from datetime import datetime
-#Dia 2 - Estructuras de control
-## while 
-
-#nombre = input("¿Cómo te llamas?: ")
-#print(f"Hola, {nombre}. Adios~")
-
-#Estructura y lógica: while
-## while condicion:
-#   ...
-#   ...
-#   if(...):
-#        break
-##  Cuidado con los bucles infinitos! El truco? La 'actualización/gestión' de la condición
-##  break, continue
-
-#Previa del taller de la semana (Mini-taller II): Hacer un pseudoagente estilo consola
-## ¿Qué podra hacer este agente por medio de comandos?
-### Terminar la sesión - salir
-### Responder un ping con un pong - ping
-### Contar letras en una palabra: Total, vocales y consonantes - contar
 
 # Login Capa de seguridad
 # Roles
