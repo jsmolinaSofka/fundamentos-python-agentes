@@ -79,20 +79,34 @@ if tiene_acceso:
         elif cmd == "calculadora":
             print("Calculadora")
             mensaje = ""
-
+       
+        # ---- Nuevos comandos: Historial de chat ----
+       
         elif cmd == "historial all":
             print("-----------Historial Completo------------------")
             for registro in historial_chat:
                 print(f"{registro['timestamp']} - {registro['rol']} - {registro['cmd']} - {registro['descripcion']}")
             mensaje = "Se consulto todo el historial"
         elif cmd == "historial clear":
-            historial_chat.clear()
+            historial_chat.clear()#metodo para vaciar toda la lista
             print("El historial ha sido borrado exitosamente.")
             mensaje = "Se limpió el historial"
         elif cmd == "historial":
+            #prevención de busquedas fantasma
+            if len(historial_chat) == 0:
+                print("El historial está vacío.")
+                mensaje = "Se consultó el historial, pero no hay registros."
+                
             palabra_clave = input("Ingrese una palabra clave para filtrar el historial: ").strip().lower()
             coincidencias = 0
             print(f" Resultados de la busqueda para: '{palabra_clave}'------------------")
+
+            #Se utilizo el operador 'in', el operador evalua la palabra clave,
+            # se utilizo el metodo lower() para evitar problemas de mayusculas o 
+            # #minusculas, se accede a la descripcion de cada registro para evaluar si 
+            # #la palabra clave esta presente, si es asi se imprime el registro completo y
+            # se aumenta el contador de coincidencias, al finalizar se muestra el total de 
+            # coincidencias encontradas o un mensaje indicando que no se encontraron resultados.
             for registro in historial_chat:
                 if palabra_clave in registro['descripcion'].lower():
                     print(f"{registro['timestamp']} - {registro['rol']} - {registro['cmd']} - {registro['descripcion']}")
