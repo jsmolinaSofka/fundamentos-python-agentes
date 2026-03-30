@@ -79,9 +79,36 @@ if tiene_acceso:
         elif cmd == "calculadora":
             print("Calculadora")
             mensaje = ""
+
+        elif cmd == "historial all":
+            print("-----------Historial Completo------------------")
+            for registro in historial_chat:
+                print(f"{registro['timestamp']} - {registro['rol']} - {registro['cmd']} - {registro['descripcion']}")
+            mensaje = "Se consulto todo el historial"
+        elif cmd == "historial clear":
+            historial_chat.clear()
+            print("El historial ha sido borrado exitosamente.")
+            mensaje = "Se limpió el historial"
+        elif cmd == "historial":
+            palabra_clave = input("Ingrese una palabra clave para filtrar el historial: ").strip().lower()
+            coincidencias = 0
+            print(f" Resultados de la busqueda para: '{palabra_clave}'------------------")
+            for registro in historial_chat:
+                if palabra_clave in registro['descripcion'].lower():
+                    print(f"{registro['timestamp']} - {registro['rol']} - {registro['cmd']} - {registro['descripcion']}")
+                    coincidencias += 1
+            if coincidencias > 0:
+                print(f"Se encontraron {coincidencias} coincidencias.")
+            else:
+                print("No se encontraron resultados.")
+            mensaje = f"Se consultó el historial con la palabra clave: '{palabra_clave}'"
+
         else:
             mensaje = "Comando no existe. Intente de nuevo"
             print(mensaje)
+        
+        
+        
         #TO-DO: Taller de la semana - Búsqueda de memoria
         d_log = {"timestamp": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 "cmd": cmd,
